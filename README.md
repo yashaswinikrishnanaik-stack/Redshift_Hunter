@@ -3,8 +3,8 @@
 In this project, we built a python package for finding the redshift of any astronomical source given their spectra. We implemented it on the SDSS datasets and further extended it to classify extragalactic sources present in the SDSS spectra.
 
 ## Tech Stack
-Python / 
-AstroPy / 
+Python <br>
+AstroPy <br> 
 AstroQuery 
 
 ## Acknowledgements
