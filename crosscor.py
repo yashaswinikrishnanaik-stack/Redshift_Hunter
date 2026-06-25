@@ -4,6 +4,31 @@ from scipy.signal import correlate, correlation_lags
 from astropy.io import fits
 from astropy import units as u
 
+#functions to make both spectra into a uniform log-wavelength grid sinceredshift becomes an additive shift in the log-wavelength space
+def _make_log_grid(wave_min: float, wave_max: float, dloglam: float) -> np.ndarray:
+    n = int(np.ceil((np.log(wave_max) - np.log(wave_min)) / dloglam))
+    n = max(n, 2)
+    return np.log(wave_min) + np.arange(n) * dloglam
+
+def _resample_to_log(wave: np.ndarray, flux: np.ndarray, loglam_grid: np.ndarray) -> np.ndarray:
+    loglam = np.log(wave)
+    order = np.argsort(loglam)
+    return np.interp(loglam_grid, loglam[order], flux[order], left=np.nan, right=np.nan)
+
+
+def _normalize(flux: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+    """Mean-subtract / std-normalize, treating non-finite pixels as masked."""
+    mask = np.isfinite(flux)
+    out = np.zeros_like(flux, dtype=float)
+    if mask.sum() < 2:
+        return out, mask
+    mean = flux[mask].mean()
+    std = flux[mask].std()
+    if std == 0 or not np.isfinite(std):
+        return out, mask
+    out[mask] = (flux[mask] - mean) / std
+    return out, mask
+
 def crosscor(spec_a, spec_b):
     """
     Normalised cross-correlation of two 1-D spectra.
