@@ -8,19 +8,24 @@ from spectra.py import observed_spectra, Eigenspectra
 
 def find_redshift(obs_wave, obs_flux, tmpl_wave, tmpl_flux,
                    z_min=-0.01, z_max=1.0, dloglam=1e-4, min_overlap=50):
+    
+    obs_wave=np.asarray(obs_wave,dtype=float)
+    obs_flux=np.asarray(obs_flux,dtype=float)
+    tmpl_wave=np.asarray(tmpl_wave,dtype=float)
+    tmpl_flux=np.asarray(tmpl_flux,dtype=float)
 
     # function to resample spectra into a log-wavelength grid    
-        def log_grid(wave,flux):
-            loglam0 = np.log(wave.min())
-            n = int(np,ceil((np.log(wave.max)) - loglam0) /dloglam)
-            grid = loglam0 + np.arange(max(n, 2)) * dloglam
-            order = np.argsort(wave)
-            resampled = np.interp(grid, np.log(wave[order]), flux[order],
-                                left=np.nan, right=np.nan)
-            return grid, resampled
+    def log_grid(wave,flux):
+        loglam0 = np.log(wave.min())
+        n = int(np.ceil((np.log(wave.max)) - loglam0) /dloglam)
+        grid = loglam0 + np.arange(max(n, 2)) * dloglam
+        order = np.argsort(wave)
+        resampled = np.interp(grid, np.log(wave[order]), flux[order],
+                            left=np.nan, right=np.nan)
+        return grid, resampled
         
-    obs_grid, obs_resamp = to_log_grid(obs_wave, obs_flux)
-    tmpl_grid, tmpl_resamp = to_log_grid(tmpl_wave, tmpl_flux)
+    obs_grid, obs_resamp = log_grid(obs_wave, obs_flux) 
+    tmpl_grid, tmpl_resamp = log_grid(tmpl_wave, tmpl_flux)
     loglam_obs0, loglam_tmpl0 = obs_grid[0], tmpl_grid[0]  
 
     # function to normalizing flux
