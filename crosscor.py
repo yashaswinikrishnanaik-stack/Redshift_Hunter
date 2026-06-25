@@ -5,45 +5,11 @@ from astropy.io import fits
 from astropy import units as u
 
 
-@dataclass
-class ZCrossResult:
-    """Result of a cross-correlation redshift measurement.
-
-    Attributes
-    ----------
-    z : float
-        Best-fit redshift.
-    z_err : float
-        1-sigma uncertainty on `z`, estimated via Monte Carlo resampling.
-        ``nan`` if `n_mc` was 0.
-    z_grid : np.ndarray
-        Redshift values corresponding to each searched pixel lag.
-    ccf : np.ndarray
-        Normalized cross-correlation coefficient at each `z_grid` value.
-    peak_index : int
-        Index into `z_grid` / `ccf` of the (integer-pixel) peak.
-    z_mc : np.ndarray
-        Best-fit redshift recovered in each Monte Carlo trial (empty if
-        `n_mc` was 0).
-    """
-
-    z: float
-    z_err: float
-    z_grid: np.ndarray
-    ccf: np.ndarray
-    peak_index: int
-    z_mc: np.ndarray = field(default_factory=lambda: np.array([]))
-
-    @property
-    def peak_ccf(self) -> float:
-        """Cross-correlation coefficient at the (integer-pixel) peak."""
-        return float(self.ccf[self.peak_index])
-
 #functions to make both spectra into a uniform log-wavelength grid sinceredshift becomes an additive shift in the log-wavelength space
 def _make_log_grid(wave_min: float, wave_max: float, dloglam: float) -> np.ndarray:
     n = int(np.ceil((np.log(wave_max) - np.log(wave_min)) / dloglam))
     n = max(n, 2)
-    return np.log(wave_min) + np.arange(n) * dloglam
+    return np.log(wave_min) + np.arange(n) * dloglam 
 
 def _resample_to_log(wave: np.ndarray, flux: np.ndarray, loglam_grid: np.ndarray) -> np.ndarray:
     loglam = np.log(wave)
