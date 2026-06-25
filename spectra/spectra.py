@@ -32,7 +32,7 @@ def Eigenspectra(filename):
     wavelength = 10**loglam   # eigenspectra wavelength
     return([wavelength,eig_lines])
 #####################################################################
-def obs_spectra(filename):
+def observed_spectra(filename):
     """Observed spectra
     
     Extract the observed flux versus wavelength data
