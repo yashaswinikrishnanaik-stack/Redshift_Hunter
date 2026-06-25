@@ -4,7 +4,7 @@ from scipy.interpolate import interp1d
 from scipy.signal import correlate, correlation_lags
 from astropy.io import fits
 from astropy import units as u
-from spectra.py import observed_spectra, Eigenspectra
+from spectra import observed_spectra, Eigenspectra 
 
 def find_redshift(obs_wave, obs_flux, tmpl_wave, tmpl_flux,
                    z_min=-0.01, z_max=1.0, dloglam=1e-4, min_overlap=50):
@@ -17,7 +17,7 @@ def find_redshift(obs_wave, obs_flux, tmpl_wave, tmpl_flux,
     # function to resample spectra into a log-wavelength grid    
     def log_grid(wave,flux):
         loglam0 = np.log(wave.min())
-        n = int(np.ceil((np.log(wave.max)) - loglam0) /dloglam)
+        n = int(np.ceil((np.log(wave.max())) - loglam0) /dloglam)
         grid = loglam0 + np.arange(max(n, 2)) * dloglam
         order = np.argsort(wave)
         resampled = np.interp(grid, np.log(wave[order]), flux[order],
@@ -32,7 +32,7 @@ def find_redshift(obs_wave, obs_flux, tmpl_wave, tmpl_flux,
     def normalize(flux):
         mask = np.isfinite(flux)
         out = np.zeros_like(flux) 
-        if mask.sum < 2:
+        if mask.sum() < 2:
             return out, mask
         std = flux[mask].std()
         if std == 0 or not np.isfinite(std):
