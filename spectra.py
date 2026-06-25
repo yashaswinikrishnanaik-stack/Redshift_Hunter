@@ -7,6 +7,15 @@ from scipy.signal import medfilt
 
 
 def Eigenspectra(filename):
+    """Eigenspectra
+    
+    extract the template spectra from sdss eigenspectra .
+
+    Args:
+        filename(string): fits file containing eigenspectra of sdss galaxy 
+    Returns:
+        list: wavelength, continumm subtracted template spectra
+    """
     with fits.open(filename) as hdul:
         E1 = hdul[0].header["EIGEN0"]
         E2 = hdul[0].header["EIGEN1"]
@@ -24,6 +33,17 @@ def Eigenspectra(filename):
     return([wavelength,eig_lines])
 #####################################################################
 def obs_spectra(filename):
+    """Observed spectra
+    
+    Extract the observed flux versus wavelength data
+
+    Args:
+        filename(string): fits file containing the observed spectra of a galaxy
+
+    Returns:
+        list: wavelength, flux 
+
+    """
 
     with fits.open("spec-1678-53433-0425.fits") as hdul:
         spec = hdul[1].data
