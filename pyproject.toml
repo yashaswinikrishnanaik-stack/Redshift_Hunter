@@ -7,7 +7,7 @@ name = "speczfind"
 version = "0.0.1"
 description = "A package to find the redshift and the type of galaxy from any FITS file."
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.9"
 dependencies = [
     "numpy",
     "astropy",
