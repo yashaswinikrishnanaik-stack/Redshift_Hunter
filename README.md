@@ -43,7 +43,7 @@ The package comes equipped with a built-in Command Line Interface (CLI) pipeline
 If your environment's path variables are configured correctly, run the workflow globally via your terminal:
 
 ```bash
-speczfind --obs 5837856538216388608.fits --eigen input.fits
+speczfind --obs input_spectra.fits --eigen template_galaxy.fits
 
 ```
 
@@ -52,7 +52,7 @@ speczfind --obs 5837856538216388608.fits --eigen input.fits
 If your terminal returns a `command not found` error for `speczfind`, bypass it entirely by targeting the module framework directly using your active Python interpreter:
 
 ```bash
-python3 -m speczfind.cli --obs 5837856538216388608.fits --eigen input.fits
+python3 -m speczfind.cli --obs input_spectra.fits --eigen template_galaxy.fits
 
 ```
 
@@ -68,7 +68,7 @@ You can fine-tune the cross-correlation search thresholds via the CLI:
 Example with custom configurations:
 
 ```bash
-python3 -m speczfind.cli --obs 5837856538216388608.fits --eigen input.fits --zmin 0.0 --zmax 0.5
+python3 -m speczfind.cli --obs input_spectra.fits --eigen template_galaxy.fits --zmin 0.0 --zmax 0.5
 
 ```
 
@@ -94,6 +94,6 @@ specZfind/
 
 ## Acknowledgements
 
-This project is built by **Kanan**, **Yashaswini**, **Vaishnavi** and **Mywish** as part of the Code/Astro in-person workshop at Raman Research Institute, Bengaluru. We thank **Sonith LS** (the local TA) and all the organizers of the Code/Astro fraternity for this learning and building opportunity.
+This project is built by **Kanan**, **Yeshaswini**, **Vaishnavi** and **Mywish** as part of the Code/Astro in-person workshop at Raman Research Institute, Bengaluru. We thank **Sonith LS** (the local TA) and all the organizers of the Code/Astro fraternity for this learning and building opportunity.
 
 ```
