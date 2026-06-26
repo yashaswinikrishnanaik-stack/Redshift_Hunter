@@ -7,7 +7,7 @@ from .galaxyclassifier import classify_galaxy
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Galaxy Analyzer: Compute redshift and classify spectral type."
+        description="specZfind: Compute redshift and classify spectral type of any galaxy."
     )
 
     # Required inputs
