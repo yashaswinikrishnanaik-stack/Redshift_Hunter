@@ -3,7 +3,7 @@ requires = ["setuptools >= 61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "Redshift_Hunter"
+name = "speczfind"
 version = "0.0.1"
 description = "A package to find the redshift and the type of galaxy from any FITS file."
 readme = "README.md"
