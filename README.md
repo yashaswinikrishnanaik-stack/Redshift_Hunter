@@ -1,6 +1,6 @@
 # specZfind
 
-`specZfind` is a modular Python package designed to extract astronomical spectra, calculate cosmological redshifts using cross-correlation against template eigenspectra, and classify galaxies via BPT line-ratio diagnostics.
+`specZfind` is a modular Python package designed to calculate cosmological redshifts using cross-correlation against template eigenspectra, and classify galaxies via BPT line-ratio diagnostics, for any input galactic spectra.
 
 ---
 
