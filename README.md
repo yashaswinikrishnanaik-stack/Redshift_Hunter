@@ -5,7 +5,9 @@ In this project, we built a python package for finding the redshift of any astro
 ## Tech Stack
 Python <br>
 AstroPy <br> 
-AstroQuery 
+SciPy <br>
+NumPy <br>
+Spectra <br>
 
 ## Acknowledgements
 
