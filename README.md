@@ -7,7 +7,6 @@ Python <br>
 AstroPy <br> 
 SciPy <br>
 NumPy <br>
-Spectra <br>
 
 ## Acknowledgements
 
