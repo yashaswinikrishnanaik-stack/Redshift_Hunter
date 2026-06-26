@@ -90,6 +90,8 @@ specZfind/
 
 ```
 
+---
+
 ## Acknowledgements
 
 This project is built by **Kanan**, **Yashaswini**, **Vaishnavi** and **Mywish** as part of the Code/Astro in-person workshop at Raman Research Institute, Bengaluru. We thank **Sonith LS** (the local TA) and all the organizers of the Code/Astro fraternity for this learning and building opportunity.
