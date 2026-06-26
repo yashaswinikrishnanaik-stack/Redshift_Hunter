@@ -1,9 +1,9 @@
 import argparse
 import sys
 # Changed relative imports to absolute imports
-from spectra import Eigenspectra, observed_spectra
-from crosscorrelation import find_redshift
-from galaxyclassifier import classify_galaxy
+from .spectra import Eigenspectra, observed_spectra
+from .crosscorrelation import find_redshift
+from .galaxyclassifier import classify_galaxy
 
 def main():
     parser = argparse.ArgumentParser(
