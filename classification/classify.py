@@ -1,45 +1,28 @@
 """
-classify.py
-
-Main interface for galaxy classification.
+Main classification interface.
 """
 
 from .identify_lines import identify_emission_lines
 from .bpt import classify_bpt
+from .agn import classify_agn
 from .confidence import compute_confidence
 
 
 def classify_spectrum(peaks, redshift):
-    """
-    Main classification function.
 
-    Parameters
-    ----------
-    peaks : list
-        List of tuples
+    identified = identify_emission_lines(peaks, redshift)
 
-        (observed_wavelength, flux)
+    galaxy_type, x, y = classify_bpt(identified)
 
-    redshift : float
+    if galaxy_type == "AGN":
+        galaxy_type = classify_agn(identified, y)
 
-    Returns
-    -------
-    dict
-    """
-
-    # Step 1
-    identified_lines = identify_emission_lines(peaks, redshift)
-
-    # Step 2
-    classification, x, y = classify_bpt(identified_lines)
-
-    # Step 3
-    confidence = compute_confidence(x, y, classification)
+    confidence = compute_confidence(x, y, galaxy_type)
 
     return {
-        "classification": classification,
+        "classification": galaxy_type,
         "confidence": confidence,
-        "identified_lines": identified_lines,
+        "identified_lines": identified,
         "bpt_x": x,
         "bpt_y": y,
     }
