@@ -15,4 +15,4 @@ dependencies = [
 "matplotlib"]
 
 [project.entry-points."console_scripts"]
-speczfind = speczfind.cli:main
+speczfind = "speczfind.cli:main"
