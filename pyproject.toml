@@ -9,10 +9,17 @@ description = "A package to find the redshift and the type of galaxy from any FI
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
- "numpy",
-"astropy",
-"scipy",
-"matplotlib"]
+    "numpy",
+    "astropy",
+    "scipy",
+    "matplotlib"
+]
 
+# This registers the terminal command mapping
 [project.entry-points."console_scripts"]
 speczfind = "speczfind.cli:main"
+
+# Explicitly guide setuptools to find your inner folder
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["speczfind*"]
