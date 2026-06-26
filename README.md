@@ -81,6 +81,8 @@ specZfind/
 │
 ├── setup.py                  # Package installer script
 ├── README.md                 # This documentation file
+├── pyproject.toml            # Project dependencies script
+├── template_galaxy.fits      # Template Spectra for Redshift Calculations (can be straightaway be used)
 └── speczfind/                # Core lowercase package module
     ├── __init__.py           # Package initializer
     ├── cli.py                # Command Line interface orchestrator
