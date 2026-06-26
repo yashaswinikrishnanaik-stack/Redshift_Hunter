@@ -1,18 +1,19 @@
 import argparse
 import sys
-from .spectra import Eigenspectra, observed_spectra
-from .crosscorrelation import find_redshift
-from .galaxyclassifier import classify_galaxy
+# Changed relative imports to absolute imports
+from spectra import Eigenspectra, observed_spectra
+from crosscorrelation import find_redshift
+from galaxyclassifier import classify_galaxy
 
 def main():
     parser = argparse.ArgumentParser(
         description="Galaxy Analyzer: Compute redshift and classify spectral type."
     )
-    
+
     # Required inputs
     parser.add_argument("--obs", required=True, help="Path to observed spectrum FITS file.")
     parser.add_argument("--eigen", required=True, help="Path to eigenspectra template FITS file.")
-    
+
     # Optional tuning configurations
     parser.add_argument("--zmin", type=float, default=-0.01, help="Minimum redshift bound (default: -0.01).")
     parser.add_argument("--zmax", type=float, default=1.0, help="Maximum redshift bound (default: 1.0).")
@@ -35,7 +36,7 @@ def main():
 
         print(" -> Performing line fitting and BPT diagnostics classification...")
         classification, log_n2_ha, log_o3_hb = classify_galaxy(args.obs, calculated_z)
-        
+
         print("="*45)
         print(" ANALYSIS RESULTS")
         print("="*45)
