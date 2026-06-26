@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="galaxy_analyzer",
+    name="speczfind",
     version="0.1.0",
     packages=find_packages(),
     install_requires=[
@@ -12,7 +12,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "galaxy-analyze=galaxy_analyzer.cli:main",
+            "speczfind=speczfind.cli:main",
         ],
     },
 )
